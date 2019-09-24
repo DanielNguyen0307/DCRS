@@ -46,23 +46,27 @@ amountLableTP.reverse()
 dateLable.reverse()
 
 ## Processing Data And Draw
-N = 5
-menMeans = (20, 35, 30, 35, 27)
-womenMeans = (25, 32, 34, 20, 25)
+## Refer link: https://matplotlib.org/3.1.1/gallery/lines_bars_and_markers/bar_stacked.html#sphx-glr-gallery-lines-bars-and-markers-bar-stacked-py
+N = 7
+card = amountLableCD
+topup = amountLableTP
+timeline = dateLable
+note1=(2, 3, 4, 1, 2, 4, 3)
+note2=(3, 5, 2, 3, 3, 5, 3)
 
-menStd = (2, 3, 4, 1, 2)
-womenStd = (3, 5, 2, 3, 3)
-ind = np.arange(N)    # the x locations for the groups
-width = 0.35       # the width of the bars: can also be len(x) sequence
+ind = np.arange(N)
+width = 0.35
+p1 = plt.bar(ind, topup, width, yerr=note1)
+p2 = plt.bar(ind, card, width, bottom=topup, yerr=note2)
 
-p1 = plt.bar(ind, menMeans, width, yerr=menStd)
-p2 = plt.bar(ind, womenMeans, width,
-             bottom=menMeans, yerr=womenStd)
+plt.ylabel('Daily Total Amount')
+plt.title('DCRS Sale Amount Report Weekly')
+plt.xticks(ind, timeline)
+plt.yticks(np.arange(0, 500000000, 100000000))
 
-plt.ylabel('Doanh Thu')
-plt.title('DCRS Sale Amount Weekly Reporting')
-plt.xticks(ind, ('G1', 'G2', 'G3', 'G4', 'G5'))
-plt.yticks(np.arange(0, 81, 10))
-plt.legend((p1[0], p2[0]), ('Men', 'Women'))
+plt.legend((p1[0], p2[0]), ('TopUp', 'Card'))
 
 plt.show()
+
+
+
