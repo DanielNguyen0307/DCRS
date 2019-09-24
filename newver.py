@@ -48,21 +48,16 @@ dateLable.reverse()
 ## Processing Data And Draw
 ## Refer link: https://matplotlib.org/3.1.1/gallery/lines_bars_and_markers/bar_stacked.html#sphx-glr-gallery-lines-bars-and-markers-bar-stacked-py
 N = 7
-card = amountLableCD
-topup = amountLableTP
-timeline = dateLable
-note1=(2, 3, 4, 1, 2, 4, 3)
-note2=(3, 5, 2, 3, 3, 5, 3)
 
 ind = np.arange(N)
 width = 0.35
-p1 = plt.bar(ind, topup, width, yerr=note1)
-p2 = plt.bar(ind, card, width, bottom=topup, yerr=note2)
+p1 = plt.bar(ind, amountLableTP, width)
+p2 = plt.bar(ind, amountLableCD, width, bottom=amountLableTP)
 
 plt.ylabel('Daily Total Amount')
 plt.title('DCRS Sale Amount Report Weekly')
-plt.xticks(ind, timeline)
-plt.yticks(np.arange(0, 500000000, 100000000))
+plt.xticks(ind, dateLable)
+plt.yticks(np.arange(0, 400000000, 25000000))
 
 plt.legend((p1[0], p2[0]), ('TopUp', 'Card'))
 
